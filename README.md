@@ -5,4 +5,5 @@ Programming assignments from all courses in the Coursera [Natural Language Proce
 	1. Week01 [Sentiment Analysis with Logistic Regression](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/home/week/1)
 	1. Week02 [Sentiment Analysis with Naïve Bayes](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/home/week/2)
 	1. Week03 [Vector Space Models](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/home/week/3)
+	1. Week04 [Machine Translation and Document Search](https://www.coursera.org/learn/classification-vector-spaces-in-nlp/home/week/4)
 
