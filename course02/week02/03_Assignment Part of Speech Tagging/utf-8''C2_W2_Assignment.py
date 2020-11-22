@@ -42,7 +42,7 @@
 # - [4 Predicting on a data set](#4)
 #     - [Exercise 08](#ex-08)
 
-# In[1]:
+# In[4]:
 
 
 # Importing packages and loading in the data set 
@@ -88,7 +88,7 @@ import numpy as np
 # 
 # The dictionary `vocab` will utilize these features.
 
-# In[2]:
+# In[5]:
 
 
 # load in the training corpus
@@ -99,7 +99,7 @@ print(f"A few items of the training corpus list")
 print(training_corpus[0:5])
 
 
-# In[3]:
+# In[6]:
 
 
 # read the vocabulary data, split by each line of text, and save the list
@@ -113,7 +113,7 @@ print("A few items at the end of the vocabulary list")
 print(voc_l[-50:])
 
 
-# In[4]:
+# In[7]:
 
 
 # vocab: dictionary that has the index of the corresponding words
@@ -132,7 +132,7 @@ for k,v in vocab.items():
         break
 
 
-# In[5]:
+# In[8]:
 
 
 # load in the test corpus
@@ -143,7 +143,7 @@ print("A sample of the test corpus")
 print(y[0:10])
 
 
-# In[6]:
+# In[9]:
 
 
 #corpus without tags, preprocessed
@@ -213,7 +213,7 @@ print(prep[0:10])
 # - In contrast, the *defaultdict* will create an item of the type of the argument, in this case an integer with the default value of 0. 
 # - See [defaultdict](https://docs.python.org/3.3/library/collections.html#defaultdict-objects).
 
-# In[7]:
+# In[10]:
 
 
 # UNQ_C1 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
@@ -253,7 +253,7 @@ def create_dictionaries(training_corpus, vocab):
             
         ### START CODE HERE (Replace instances of 'None' with your code) ###
         # get the word and tag using the get_word_tag helper function (imported from utils_pos.py)
-        word, tag = get_word_tag(word_tag,vocab)  
+        word, tag = get_word_tag(word_tag,vocab) 
         
         # Increment the transition count for the previous word and tag
         transition_counts[(prev_tag, tag)] += 1
@@ -272,13 +272,13 @@ def create_dictionaries(training_corpus, vocab):
     return emission_counts, transition_counts, tag_counts
 
 
-# In[8]:
+# In[11]:
 
 
 emission_counts, transition_counts, tag_counts = create_dictionaries(training_corpus, vocab)
 
 
-# In[9]:
+# In[12]:
 
 
 # get all the POS states
@@ -303,7 +303,7 @@ print(states)
 # - In addition, there are helpful tags like '--s--' which indicate a start of a sentence.
 # - You can get a more complete description at [Penn Treebank II tag set](https://www.clips.uantwerpen.be/pages/mbsp-tags). 
 
-# In[10]:
+# In[13]:
 
 
 print("transition examples: ")
@@ -360,7 +360,7 @@ for tup,cnt in emission_counts.items():
 # - Then evaluate how well this approach works.  Each time you predict based on the most frequent POS for the given word, check whether the actual POS of that word is the same.  If so, the prediction was correct!
 # - Calculate the accuracy as the number of correct predictions divided by the total number of words for which you predicted the POS tag.
 
-# In[11]:
+# In[14]:
 
 
 # UNQ_C2 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
@@ -430,7 +430,7 @@ def predict_pos(prep, y, emission_counts, vocab, states):
 
             # If the final POS (with the largest count) matches the true POS:
             if pos_final == true_label: # complete this line
-                
+            
                 # Update the number of correct predictions
                 num_correct += 1
             
@@ -440,7 +440,7 @@ def predict_pos(prep, y, emission_counts, vocab, states):
     return accuracy
 
 
-# In[12]:
+# In[15]:
 
 
 accuracy_predict_pos = predict_pos(prep, y, emission_counts, vocab, states)
@@ -513,11 +513,12 @@ print(f"Accuracy of prediction using predict_pos is {accuracy_predict_pos:.4f}")
 # 
 # **Instructions:** Implement the `create_transition_matrix` below for all tags. Your task is to output a matrix that computes equation 3 for each cell in matrix `A`. 
 
-# In[13]:
+# In[16]:
 
 
 # UNQ_C3 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
 # GRADED FUNCTION: create_transition_matrix
+
 def create_transition_matrix(alpha, tag_counts, transition_counts):
     ''' 
     Input: 
@@ -531,8 +532,7 @@ def create_transition_matrix(alpha, tag_counts, transition_counts):
     all_tags = sorted(tag_counts.keys())
     
     # Count the number of unique POS tags
-    #num_tags = len(all_tags)
-    num_tags = len(tag_counts)
+    num_tags = len(all_tags)
     
     # Initialize the transition matrix 'A'
     A = np.zeros((num_tags,num_tags))
@@ -575,7 +575,7 @@ def create_transition_matrix(alpha, tag_counts, transition_counts):
     return A
 
 
-# In[14]:
+# In[17]:
 
 
 alpha = 0.001
@@ -636,7 +636,7 @@ print(A_sub)
 # ### Exercise 04
 # **Instructions:** Implement the `create_emission_matrix` below that computes the `B` emission probabilities matrix. Your function takes in $\alpha$, the smoothing parameter, `tag_counts`, which is a dictionary mapping each tag to its respective count, the `emission_counts` dictionary where the keys are (tag, word) and the values are the counts. Your task is to output a matrix that computes equation 4 for each cell in matrix `B`. 
 
-# In[15]:
+# In[18]:
 
 
 # UNQ_C4 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
@@ -669,13 +669,11 @@ def create_emission_matrix(alpha, tag_counts, emission_counts, vocab):
     # Get a set of all (POS, word) tuples 
     # from the keys of the emission_counts dictionary
     emis_keys = set(list(emission_counts.keys()))
-
     
     ### START CODE HERE (Replace instances of 'None' with your code) ###
     
     # Go through each row (POS tags)
     for i in range(num_tags): # complete this line
-    #for i in range(num_words): # complete this line
         
         # Go through each column (words)
         for j in range(num_words): # complete this line
@@ -702,7 +700,7 @@ def create_emission_matrix(alpha, tag_counts, emission_counts, vocab):
     return B
 
 
-# In[16]:
+# In[19]:
 
 
 # creating your emission probability matrix. this takes a few minutes to run. 
@@ -805,11 +803,12 @@ print(B_sub)
 # float('-inf')
 # ```
 
-# In[17]:
+# In[21]:
 
 
 # UNQ_C5 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
 # GRADED FUNCTION: initialize
+
 def initialize(states, tag_counts, A, B, corpus, vocab):
     '''
     Input: 
@@ -858,13 +857,13 @@ def initialize(states, tag_counts, A, B, corpus, vocab):
     return best_probs, best_paths
 
 
-# In[18]:
+# In[22]:
 
 
 best_probs, best_paths = initialize(states, tag_counts, A, B, prep, vocab)
 
 
-# In[19]:
+# In[23]:
 
 
 # Test the function
@@ -950,11 +949,12 @@ print(f"best_paths[2,3]: {best_paths[2,3]:.4f}")
 # </p>
 # 
 
-# In[20]:
+# In[24]:
 
 
 # UNQ_C6 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
 # GRADED FUNCTION: viterbi_forward
+
 def viterbi_forward(A, B, test_corpus, best_probs, best_paths, vocab):
     '''
     Input: 
@@ -1027,14 +1027,14 @@ def viterbi_forward(A, B, test_corpus, best_probs, best_paths, vocab):
 # 
 # **Note** that this will take a few minutes to run.  There are about 30,000 words to process.
 
-# In[21]:
+# In[25]:
 
 
 # this will take a few minutes to run => processes ~ 30,000 words
 best_probs, best_paths = viterbi_forward(A, B, prep, best_probs, best_paths, vocab)
 
 
-# In[22]:
+# In[26]:
 
 
 # Test this function 
@@ -1105,7 +1105,7 @@ print(f"best_probs[0,4]: {best_probs[0,4]:.4f}")
 # 
 # The small test following the routine prints the last few words of the corpus and their states to aid in debug.
 
-# In[23]:
+# In[27]:
 
 
 # UNQ_C7 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
@@ -1191,7 +1191,7 @@ def viterbi_backward(best_probs, best_paths, corpus, states):
     return pred
 
 
-# In[24]:
+# In[28]:
 
 
 # Run and test your function
@@ -1220,7 +1220,7 @@ print('The prediction for pred[0:8] is: \n', pred[0:7], "\n", prep[0:7])
 # Compute the accuracy of your prediction by comparing it with the true `y` labels. 
 # - `pred` is a list of predicted POS tags corresponding to the words of the `test_corpus`. 
 
-# In[25]:
+# In[29]:
 
 
 print('The third word is:', prep[3])
@@ -1234,12 +1234,12 @@ print('Your corresponding label y is: ', y[3])
 # Implement a function to compute the accuracy of the viterbi algorithm's POS tag predictions.
 # - To split y into the word and its tag you can use `y.split()`. 
 
-# In[26]:
+# In[30]:
 
 
 # UNQ_C8 (UNIQUE CELL IDENTIFIER, DO NOT EDIT)
 # GRADED FUNCTION: compute_accuracy
-def compute_accuracy(pred, y2):
+def compute_accuracy(pred, y):
     '''
     Input: 
         pred: a list of the predicted parts-of-speech 
@@ -1251,7 +1251,7 @@ def compute_accuracy(pred, y2):
     total = 0
     
     # Zip together the prediction and the labels
-    for prediction, y in zip(pred, y2):
+    for prediction, y in zip(pred, y):
         ### START CODE HERE (Replace instances of 'None' with your code) ###
         # Split the label into the word and the POS tag
         word_tag_tuple = y.split()
@@ -1279,7 +1279,7 @@ def compute_accuracy(pred, y2):
     
 
 
-# In[27]:
+# In[31]:
 
 
 print(f"Accuracy of the Viterbi algorithm is {compute_accuracy(pred, y):.4f}")
