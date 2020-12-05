@@ -18,6 +18,7 @@ Programming assignments from all courses in the Coursera [Natural Language Proce
 	1. Week04 [Siamese Networks](https://www.coursera.org/learn/sequence-models-in-nlp/home/week/4)
 4. Course 04 []()
 	1. Week01 []()
+	1. Week02 []()
 
 
 3. Course 03 []()
