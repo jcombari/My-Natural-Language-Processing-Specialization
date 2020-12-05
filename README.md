@@ -19,6 +19,7 @@ Programming assignments from all courses in the Coursera [Natural Language Proce
 4. Course 04 []()
 	1. Week01 []()
 	1. Week02 []()
+	1. Week03 []()
 
 
 3. Course 03 []()
