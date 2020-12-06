@@ -16,14 +16,11 @@ Programming assignments from all courses in the Coursera [Natural Language Proce
 	1. Week02 [Recurrent Neural Networks for Language Modeling](https://www.coursera.org/learn/sequence-models-in-nlp/home/week/2)
 	1. Week03 [LSTMs and Named Entity Recognition](https://www.coursera.org/learn/sequence-models-in-nlp/home/week/3)
 	1. Week04 [Siamese Networks](https://www.coursera.org/learn/sequence-models-in-nlp/home/week/4)
-4. Course 04 []()
-	1. Week01 []()
-	1. Week02 []()
-	1. Week03 []()
-	1. Week04 []()
+4. Course 04 [Natural Language Processing with Attention Models](https://www.coursera.org/learn/attention-models-in-nlp/home/welcome)
+	1. Week01 [Neural Machine Translation](https://www.coursera.org/learn/attention-models-in-nlp/home/week/1)
+	1. Week02 [Text Summarization](https://www.coursera.org/learn/attention-models-in-nlp/home/week/2)
+	1. Week03 [Question Answering](https://www.coursera.org/learn/attention-models-in-nlp/home/week/3)
+	1. Week04 [Chatbot](https://www.coursera.org/learn/attention-models-in-nlp/home/week/4)
 
-
-3. Course 03 []()
-	1. Week01 []()
 
 
